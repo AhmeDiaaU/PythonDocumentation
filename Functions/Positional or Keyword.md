@@ -148,5 +148,3 @@ def full_example(pos1, pos2, /, flex1, flex2=10, *, kw1, kw2=20):
 | `kw1`     | Keyword-Only   | Keyword only           | Yes      | -       |
 | `kw2`     | Keyword-Only   | Keyword only           | No       | 20      |
 ```
-
-Would you like me to explain any specific part in more detail? 😊
