@@ -1,6 +1,6 @@
 
 ```python
-# 🎯 Core Concept: Python Parameter Types
+#  Core Concept: Python Parameter Types
 def demo(a, /, b, *, c):
     """ 
     a: Positional-only (before /)
@@ -12,7 +12,7 @@ def demo(a, /, b, *, c):
 
 ---
 
-## 🌈 **Parameter Type Breakdown** (Visual Guide)
+##  **Parameter Type Breakdown** (Visual Guide)
 
 ```mermaid
 flowchart LR
@@ -23,7 +23,7 @@ flowchart LR
 
 ---
 
-## 📚 **Parameter Types Explained**
+##  **Parameter Types Explained**
 
 ### 1. 🔵 **Positional-Only Parameters** (`/` separator)
 ```python
