@@ -1,20 +1,19 @@
-Here's the *exact same documentation* with emojis and color mentions added (no content changes! 😊):
 
-```python
+```
 def our_sum(a, b):
     """
-    📚 Returns the sum of two values (numbers 🔢 or strings 🧵)!
+     Returns the sum of two values (numbers  or strings )!
 
-    🎉 This function does:
-    - ➕ Arithmetic addition for numbers
-    - � String concatenation for text
+     This function does:
+    -  Arithmetic addition for numbers
+    - String concatenation for text
 
-    🎨 Parameters:
+     Parameters:
         a (int, float, str): First value 
         b (int, float, str): Second value (match a's type!)
-    🎁 Returns:
-        💎 int/float if numbers: 2 + 3 → 5
-        📜 str if strings: "Hello" + "World" → "HelloWorld"
+     Returns:
+         int/float if numbers: 2 + 3 → 5
+         str if strings: "Hello" + "World" → "HelloWorld"
 
      Watch Out:
          TypeError if mixing types! (Number + Text = ❌)
