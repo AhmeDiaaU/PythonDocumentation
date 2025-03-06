@@ -32,9 +32,3 @@ def our_sum(a, b):
         6.2
     """
     return a + b
-```
-
-**How to View:**  
-```python
-help(our_sum)  # Will show emojis if terminal supports them! 
-``` 
