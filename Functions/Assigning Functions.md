@@ -118,10 +118,3 @@ graph LR
     style E fill:#ff9f33,color:black
     style F fill:#339fff,color:white
 ```
-
-## Links
-
-- [[Python Functions|🐍 Python Functions]]
-- [[Higher Order Functions|🔝 Higher Order Functions]]
-- [[Lambda Functions|λ Lambda Functions]]
-- [[Python Sorting|🔢 Python Sorting Techniques]]
