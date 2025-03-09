@@ -5,6 +5,10 @@ I'll customize these notes on Python parameter types with Obsidian styling and c
 ## <span style="color: #33a8ff;">Core Concept</span>
 
 ```python
+<<<<<<< HEAD
+=======
+#  Core Concept: Python Parameter Types
+>>>>>>> b85c7556fc7d180aa17d7c830335331099015921
 def demo(a, /, b, *, c):
     """ 
     a: Positional-only (before /)
@@ -14,7 +18,13 @@ def demo(a, /, b, *, c):
     return a + b + c
 ```
 
+<<<<<<< HEAD
 ## <span style="color: #33ff57;">Parameter Type Breakdown</span>
+=======
+---
+
+##  **Parameter Type Breakdown** (Visual Guide)
+>>>>>>> b85c7556fc7d180aa17d7c830335331099015921
 
 ```mermaid
 flowchart LR
@@ -28,7 +38,13 @@ flowchart LR
     style D fill:#33ff57,color:black
 ```
 
+<<<<<<< HEAD
 ## 📚 <span style="color: #ff5733;">Parameter Types Explained</span>
+=======
+---
+
+##  **Parameter Types Explained**
+>>>>>>> b85c7556fc7d180aa17d7c830335331099015921
 
 ### 1. 🔵 **Positional-Only Parameters** (`/` separator)
 
@@ -158,6 +174,7 @@ def full_example(pos1, pos2, /, flex1, flex2=10, *, kw1, kw2=20):
     ...
 ```
 
+<<<<<<< HEAD
 |Parameter|Type|Passing Style|Required|Default|
 |---|---|---|---|---|
 |<span style="color: #ff5733;">`pos1`</span>|Positional-Only|Position only|Yes|-|
