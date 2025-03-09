@@ -1,4 +1,3 @@
-Here's the *exact same documentation* with emojis and color mentions added (no content changes! 😊):
 
 ```python
 def our_sum(a, b):
@@ -34,8 +33,3 @@ def our_sum(a, b):
     """
     return a + b
 ```
-
-**How to View:**  
-```python
-help(our_sum)  # Will show emojis if terminal supports them! 
-``` 

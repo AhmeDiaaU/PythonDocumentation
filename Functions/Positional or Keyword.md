@@ -1,6 +1,10 @@
+I'll customize these notes on Python parameter types with Obsidian styling and colors:
+
+# 🎯 Python Parameter Types
+
+## <span style="color: #33a8ff;">Core Concept</span>
 
 ```python
-# 🎯 Core Concept: Python Parameter Types
 def demo(a, /, b, *, c):
     """ 
     a: Positional-only (before /)
@@ -10,143 +14,155 @@ def demo(a, /, b, *, c):
     return a + b + c
 ```
 
----
-
-## 🌈 **Parameter Type Breakdown** (Visual Guide)
+## <span style="color: #33ff57;">Parameter Type Breakdown</span>
 
 ```mermaid
 flowchart LR
     A[Function Parameters] --> B["Positional-Only (before /)"]
     A --> C["Flexible (positional/keyword)"]
     A --> D["Keyword-Only (after *)"]
+    
+    style A fill:#d633ff,color:white
+    style B fill:#ff5733,color:white
+    style C fill:#33a8ff,color:white
+    style D fill:#33ff57,color:black
 ```
 
----
-
-## 📚 **Parameter Types Explained**
+## 📚 <span style="color: #ff5733;">Parameter Types Explained</span>
 
 ### 1. 🔵 **Positional-Only Parameters** (`/` separator)
-```python
-def func(x, /, y):  # Everything before / is positional-only
-    return x ** y
-```
+
+> [!info]+ Parameters before the `/` must be passed positionally
+> 
+> ```python
+> def func(x, /, y):  # Everything before / is positional-only
+>    return x ** y
+> ```
 
 #### ✅ Valid Usage:
+
 ```python
 func(3, 2)    # 🟢 Both positional
 func(3, y=2)  # 🟢 x positional, y keyword
 ```
 
 #### ❌ Invalid Usage:
+
 ```python
 # func(x=3, y=2)  # 🔴 TypeError: x cannot be keyword argument
 ```
 
----
-
 ### 2. 🟢 **Flexible Parameters** (Default behavior)
-```python
-def func(a, b, c=10):  # Can be passed positionally or by keyword
-    return a + b + c
-```
+
+> [!info]+ Parameters without special markers can be passed either way
+> 
+> ```python
+> def func(a, b, c=10):  # Can be passed positionally or by keyword
+>    return a + b + c
+> ```
 
 #### ✅ Valid Usage:
+
 ```python
 func(1, 2)          # 🟢 Positional with default
 func(a=1, b=2)      # 🟢 Keyword arguments
 func(1, b=2, c=20)  # 🟢 Mixed style
 ```
 
----
-
 ### 3. 🟠 **Keyword-Only Parameters** (`*` separator)
-```python
-def func(*, api_key, timeout):  # Everything after * must be keyword
-    return f"{api_key}:{timeout}"
-```
+
+> [!info]+ Parameters after the `*` must be passed by keyword
+> 
+> ```python
+> def func(*, api_key, timeout):  # Everything after * must be keyword
+>    return f"{api_key}:{timeout}"
+> ```
 
 #### ✅ Valid Usage:
+
 ```python
 func(api_key="abc123", timeout=30)  # 🟢 Proper keyword usage
 ```
 
 #### ❌ Invalid Usage:
+
 ```python
 # func("abc123", 30)  # 🔴 TypeError: positional args not allowed
 ```
 
----
+## 🧩 <span style="color: #d633ff;">Parameter Comparison Table</span>
 
-## 🧩 **Parameter Comparison Table**
+|Feature|<span style="color: #ff5733;">`/` (Positional-Only)</span>|<span style="color: #33a8ff;">Default Parameters</span>|<span style="color: #33ff57;">`*` (Keyword-Only)</span>|
+|---|---|---|---|
+|**Enforcement**|No keywords allowed|Flexible|Keywords required|
+|**Position in Def**|Beginning|Middle|End|
+|**Use Case**|Internal API safety|General purpose|Explicit arguments|
+|**Example**|`def f(x, /)`|`def f(a, b=5)`|`def f(*, key)`|
 
-| Feature               | `/` (Positional-Only) | Default Parameters | `*` (Keyword-Only) |
-|-----------------------|-----------------------|--------------------|--------------------|
-| **Enforcement**       | No keywords allowed   | Flexible           | Keywords required  |
-| **Position in Def**   | Beginning             | Middle             | End                |
-| **Use Case**          | Internal API safety   | General purpose    | Explicit arguments |
-| **Example**           | `def f(x, /)`         | `def f(a, b=5)`    | `def f(*, key)`    |
-
----
-
-## 💥 **Common Errors & Solutions**
+## 💥 <span style="color: #ff9f33;">Common Errors & Solutions</span>
 
 ### 1. 🔴 **Positional After Keyword**
-```python
-# ❌ Broken
-calculate(a=1, 20, c=3)  # SyntaxError: positional follows keyword
 
-# ✅ Fixed
-calculate(1, 20, c=3)    # 🟢 All positional first
-calculate(a=1, b=20, c=3) # 🟢 All keywords
-```
+> [!warning]+ Positional arguments must come before keyword arguments
+> 
+> ```python
+> # ❌ Broken
+> calculate(a=1, 20, c=3)  # SyntaxError: positional follows keyword
+> 
+> # ✅ Fixed
+> calculate(1, 20, c=3)    # 🟢 All positional first
+> calculate(a=1, b=20, c=3) # 🟢 All keywords
+> ```
 
 ### 2. 🔴 **Missing Required Arguments**
-```python
-def connect(host, /, port, *, timeout):
-    ...
 
-# ❌ Broken
-connect('localhost', timeout=5)  # TypeError: missing 'port'
+> [!warning]+ All required parameters must be provided
+> 
+> ```python
+> def connect(host, /, port, *, timeout):
+>    ...
+> 
+> # ❌ Broken
+> connect('localhost', timeout=5)  # TypeError: missing 'port'
+> 
+> # ✅ Fixed
+> connect('localhost', 8080, timeout=5)  # 🟢 All required args provided
+> ```
 
-# ✅ Fixed
-connect('localhost', 8080, timeout=5)  # 🟢 All required args provided
-```
+## 🚀 <span style="color: #33a8ff;">Pro Tips</span>
 
----
+> [!tip]+ API Design Use `/` and `*` to create clear boundaries between parameter types
 
-## 🚀 **Pro Tips**
-1. **API Design**: Use `/` and `*` to create clear boundaries between parameter types
-2. **Documentation**: Always specify parameter types in docstrings:
-   ```python
-   def process(data, /, chunk_size, *, validate=True):
-       """
-       data: Positional-only input
-       chunk_size: Flexible parameter
-       validate: Keyword-only flag
-       """
-   ```
-3. **Debugging**: Use `inspect.signature()` to view parameter requirements:
-   ```python
-   import inspect
-   print(inspect.signature(process))  # (data, /, chunk_size, *, validate=True)
-   ```
+> [!tip]+ Documentation Always specify parameter types in docstrings:
+> 
+> ```python
+> def process(data, /, chunk_size, *, validate=True):
+>    """
+>    data: Positional-only input
+>    chunk_size: Flexible parameter
+>    validate: Keyword-only flag
+>    """
+> ```
 
----
+> [!tip]+ Debugging Use `inspect.signature()` to view parameter requirements:
+> 
+> ```python
+> import inspect
+> print(inspect.signature(process))  # (data, /, chunk_size, *, validate=True)
+> ```
 
-## � **Parameter Enforcement Map**
+## 📊 <span style="color: #33ff57;">Parameter Enforcement Map</span>
+
 ```python
 def full_example(pos1, pos2, /, flex1, flex2=10, *, kw1, kw2=20):
     ...
 ```
 
-| Parameter | Type          | Passing Style          | Required | Default |
-|-----------|---------------|------------------------|----------|---------|
-| `pos1`    | Positional-Only | Position only          | Yes      | -       |
-| `pos2`    | Positional-Only | Position only          | Yes      | -       |
-| `flex1`   | Flexible       | Position or Keyword    | Yes      | -       |
-| `flex2`   | Flexible       | Position or Keyword    | No       | 10      |
-| `kw1`     | Keyword-Only   | Keyword only           | Yes      | -       |
-| `kw2`     | Keyword-Only   | Keyword only           | No       | 20      |
-```
-
-Would you like me to explain any specific part in more detail? 😊
+|Parameter|Type|Passing Style|Required|Default|
+|---|---|---|---|---|
+|<span style="color: #ff5733;">`pos1`</span>|Positional-Only|Position only|Yes|-|
+|<span style="color: #ff5733;">`pos2`</span>|Positional-Only|Position only|Yes|-|
+|<span style="color: #33a8ff;">`flex1`</span>|Flexible|Position or Keyword|Yes|-|
+|<span style="color: #33a8ff;">`flex2`</span>|Flexible|Position or Keyword|No|10|
+|<span style="color: #33ff57;">`kw1`</span>|Keyword-Only|Keyword only|Yes|-|
+|<span style="color: #33ff57;">`kw2`</span>|Keyword-Only|Keyword only|No|20|

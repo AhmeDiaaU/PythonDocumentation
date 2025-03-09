@@ -1,294 +1,318 @@
+#  Dictionary Methods
+> [!abstract] Dictionary at a Glance Dictionaries store data as **key-value pairs** and are one of Python's most powerful built-in data structures.
+> 
+> ```python
+> # Dictionary visualization
+> {
+>   🔑 'key1': 📦 'value1',
+>   🔑 'key2': 📦 'value2'
+> }
+> ```
 
-## 1 **Dictionary Basics**
-- **Key Concepts**:
-  - Dictionaries store key-value pairs.
-  - Keys must be unique.
-  - Values can be of any type.
-  
-- **Code Example**:
-  ```python
-  det = {'Ahmed': 20, 'Ziad': 25.2, 'C#bj': [5.23]}
-  print(det.get('Ahmed'))  # Returns 20
-  print(det.get(7.15, 'IP 7 doesn\'t exist'))  # Sets value to 7 if key doesn't exist
-  ```
+## Essential Dictionary Methods
 
----
+```python
+# Creating our playground dictionary
+user_data = {'name': 'Alice', 'age': 30, 'skills': ['Python', 'Data Science']}
 
-### 2. **Dictionary Operations**
-- **Key Concepts**:
-  - `clear()`: Removes all keys.
-  - `items()`: Returns key-value pairs.
-  - `keys()`: Returns all keys.
-  - `values()`: Returns all values.
-  
-- **Code Example**:
-  ```python
-  clct = {'X': 1, 'b': 20, 'q': 80}
-  clct['a'] = 30  # Inserted at the end
-  for key, value in clct.items():
-      print(f'{key}: {value}')
-  ```
+# 🕵️ .keys(): Retrieve all keys
+print(user_data.keys())  # dict_keys(['name', 'age', 'skills'])
 
----
+# 🔍 .values(): Get all values
+print(user_data.values())  # dict_values(['Alice', 30, ['Python', 'Data Science']])
 
-### 3. **Time Complexity**
-- **Key Concepts**:
-  - Insertion, deletion, and lookup operations are generally O(1).
-  - Iterating over all elements is O(n).
-  
-- **Formula**:
-  \[
-  \frac{q}{Nv_3}
-  \]
-  
----
+# 🔗 .items(): Get key-value pairs
+print(user_data.items())  # dict_items([('name', 'Alice'), ('age', 30), ('skills', [...])])
+```
 
-### 4. **Insertion Order Preservation**
-- **Key Concepts**:
-  - In Python 3.7+, dictionaries preserve insertion order.
-  
-- **Code Example**:
-  ```python
-  det = {20: 10, 1/4: 20, 30: 15, (0, 2): 50}
-  det[30] = 10  # Updates the value
-  print(det)  # Order is preserved
-  ```
+> [!tip]+ Dynamic Views 🔄 The `.keys()`, `.values()`, and `.items()` methods return _view objects_ that dynamically reflect dictionary changes!
+> 
+> ```python
+> data = {'a': 1}
+> keys = data.keys()  # dict_keys(['a'])
+> data['b'] = 2
+> print(keys)  # dict_keys(['a', 'b']) - automatically updated!
+> ```
 
----
+##  Advanced Dictionary Methods
 
-### 5. **List vs Dictionary**
-- **Key Concepts**:
-  - **List**: Ordered sequence, can be indexed or sliced.
-  - **Dictionary**: Unordered collection of key-value pairs, insertion order is preserved.
-  
-- **Code Example**:
-  ```python
-  lst = [5, 3, 3]
-  det = {"Ziad": 95.9, 9: lst, "Hey": emp}
-  lst.pop()  # Only affects the list, not the dictionary
-  ```
+> [!example]+ 🧩 `.get()`: Safe Value Retrieval
+> 
+> ```python
+> # Default value if key doesn't exist
+> username = user_data.get('username', 'Guest')  # Returns 'Guest'
+> 
+> # Visual comparison:
+> # ✅ Safe: user_data.get('missing_key', 'default')  → 'default'
+> # ❌ Risky: user_data['missing_key']  → KeyError exception!
+> ```
 
----
+> [!example]+ 🔄 `.update()`: Merging Dictionaries
+> 
+> ```python
+> # Combine dictionaries with ease
+> contact_info = {'email': 'alice@example.com'}
+> user_data.update(contact_info)
+> # user_data now includes email
+> ```
+> 
+> ```mermaid
+> graph LR
+>     A["user_data<br>{name: 'Alice', age: 30}"] --> C
+>     B["contact_info<br>{email: 'alice@example.com'}"] --> C
+>     C["RESULT<br>{name: 'Alice', age: 30, email: 'alice@example.com'}"]
+>     style A fill:#ffcccc
+>     style B fill:#ccffcc
+>     style C fill:#ccccff
+> ```
 
-### 6. **Shallow Copy**
-- **Key Concepts**:
-  - `copy()` creates a shallow copy of the dictionary.
-  - Changes to nested objects affect both the original and the copy.
-  
-- **Code Example**:
-  ```python
-  clb = det.copy()
-  print(clb['Hey'] is det['Hey'])  # Returns True
-  ```
+> [!example]+ 🗑️ `.pop()`: Remove and Return
+> 
+> ```python
+> # Remove a specific key and get its value
+> age = user_data.pop('age')  # Removes 'age' key and returns 30
+> ```
+> 
+> ```mermaid
+> flowchart LR
+>     A["Before: {'name': 'Alice', 'age': 30}"] --> B["pop('age')"]
+>     B --> C["After: {'name': 'Alice'}"]
+>     B --> D["Return: 30"]
+>     style A fill:#f9d5e5
+>     style B fill:#eeac99
+>     style C fill:#e06377
+>     style D fill:#c83349
+> ```
 
----
+> [!example]+ 🔒 `.setdefault()`: Clever Default Insertion
+> 
+> ```python
+> # Insert key with default if not exists
+> hobbies = user_data.setdefault('hobbies', [])
+> # If 'hobbies' didn't exist, it's created with an empty list
+> user_data['hobbies'].append('Coding')
+> ```
+> 
+> ```mermaid
+> graph TD
+>     A["Dict: {'name': 'Alice'}"] --> B{Key 'hobbies' exists?}
+>     B -->|Yes| C["Return existing value"]
+>     B -->|No| D["Create key with default value"]
+>     D --> E["Dict: {'name': 'Alice', 'hobbies': []}"]
+>     style A fill:#cfe2f3
+>     style B fill:#fff2cc
+>     style C fill:#d9ead3
+>     style D fill:#f4cccc
+>     style E fill:#d0e0e3
+> ```
 
-### 7. **Set Basics**
-- **Key Concepts**:
-  - Sets are unordered collections of unique elements.
-  - Insertion order is not preserved.
-  
-- **Code Example**:
-  ```python
-  unique_keys = dict.fromkeys([1, 2, 30, 'b', 20])
-  print(unique_keys)  # {1: None, 2: None, 30: None, 'b': None, 20: None}
-  ```
+##  Dictionary Comprehensions: One-Liners of Magic
 
----
+> [!note]+ Dictionary Comprehension Syntax
+> 
+> ```
+> { key_expression: value_expression for item in iterable [if condition] }
+> ```
+> 
+> ![Dictionary Comprehension](https://digital-garden.netlify.app/images/dict-comp.png)
 
-### 8. **Set Operations**
-- **Key Concepts**:
-  - **Union**: Combines elements from two sets.
-  - **Intersection**: Finds common elements.
-  - **Difference**: Finds elements in one set but not the other.
-  
-- **Code Example**:
-  ```python
-  str1 = {1, 5, 7, 8}
-  str2 = {1, 5, 3, 10}
-  print(str1 | str2)  # Union: {1, 3, 5, 7, 8, 10}
-  print(str1 & str2)  # Intersection: {1, 5}
-  ```
+```python
+# Create a dictionary of squares
+squares = {x: x**2 for x in range(6)}
+# Result: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
----
+# Conditional dictionary comprehension
+even_squares = {x: x**2 for x in range(10) if x % 2 == 0}
+# Result: {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
 
-### 9. **FrozenSet**
-- **Key Concepts**:
-  - Immutable version of a set.
-  - Can be used as a dictionary key.
-  
-- **Code Example**:
-  ```python
-  frozen = frozenset([1, 2, 3, 4, 5])
-  print(frozen)  # frozenset({1, 2, 3, 4, 5})
-  ```
+# Transform values with comprehension
+prices = {'apple': 1.20, 'banana': 0.50, 'orange': 0.80}
+sale_prices = {fruit: price * 0.8 for fruit, price in prices.items()}
+# Result: {'apple': 0.96, 'banana': 0.40, 'orange': 0.64}
+```
 
----
+> [!success]+ Visual Transformation
+> 
+> ```mermaid
+> graph LR
+>     A["range(6)"] --> B["Dictionary Comprehension<br>{x: x**2 for x in range(6)}"]
+>     B --> C["{0:0, 1:1, 2:4, 3:9, 4:16, 5:25}"]
+>     style A fill:#d4f1f9
+>     style B fill:#75e6da
+>     style C fill:#189ab4
+> ```
 
-### 10. **Set Comprehension**
-- **Key Concepts**:
-  - Similar to list comprehension but for sets.
-  
-- **Code Example**:
-  ```python
-  line = "Ahmed Dina Eldeen Kamel"
-  unique_vowels = {i for i in line if i in 'AEIOUaeiou'}
-  print(unique_vowels)  # {'a', 'e', 'i'}
-  ```
+##  Method Comparison Table
 
----
+> [!important]+ Quick Reference Guide
+> 
+> |Method|Purpose|Returns|Example|
+> |:-:|:-:|:-:|:--
+> |`.keys()`|All keys|View object|`{'a':1, 'b':2}.keys()` → `dict_keys(['a', 'b'])`|
+> |`.values()`|All values|View object|`{'a':1, 'b':2}.values()` → `dict_values([1, 2])`
+> |`.items()`|Key-value pairs|View object|`{'a':1, 'b':2}.items()` → `dict_items([('a',1), ('b',2)])`
+> |`.get()`|Safe retrieval|Value or default|`{'a':1}.get('b', 0)` → `0`
+> |`.pop()`|Remove & return|Removed value|`{'a':1}.pop('a')` → `1`
+> |`.update()`|Merge dictionaries|`None`|Modifies in-place
+> |`.setdefault()`|Set if missing|Value of key|`d.setdefault('k', [])`
+> |`.clear()`|Empty dict|`None`|`d.clear()` → `{}`
+> |`.copy()`|Shallow copy|New dict|`d.copy()` → New dict with same contents
+##  Advanced Tricks
 
-### 11. **Filtering Duplicates**
-- **Key Concepts**:
-  - Use sets to filter out duplicate lists.
-  
-- **Code Example**:
-  ```python
-  def filter_duplicates(list_of_lists):
-      seen = set()
-      result = []
-      for lst in list_of_lists:
-          t = tuple(lst)
-          if t not in seen:
-              seen.add(t)
-              result.append(lst)
-      return result
-  ```
+> [!success]+ Dictionary Inversion
+> 
+> ```python
+> # Inverting a dictionary
+> original = {'a': 1, 'b': 2, 'c': 3}
+> inverted = {value: key for key, value in original.items()}
+> # Result: {1: 'a', 2: 'b', 3: 'c'}
+> ```
+> 
+> ```mermaid
+> flowchart LR
+>     A["{'a': 1, 'b': 2, 'c': 3}"] --> B["Dictionary Comprehension"]
+>     B --> C["{1: 'a', 2: 'b', 3: 'c'}"]
+>     style A fill:#ffcc99
+>     style B fill:#ff9966
+>     style C fill:#ff6633
+> ```
 
----
+> [!success]+ Merging Dictionaries
+> 
+> ```python
+> # Python 3.9+ merge operator
+> dict1 = {'a': 1, 'b': 2}
+> dict2 = {'c': 3, 'd': 4}
+> merged = dict1 | dict2  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+> 
+> # Update with |= operator
+> dict1 |= dict2  # dict1 is now {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+> ```
+> 
+> ```mermaid
+> graph TD
+>     A["dict1 = {'a': 1, 'b': 2}"] --> D
+>     B["dict2 = {'c': 3, 'd': 4}"] --> D
+>     D["dict1 | dict2"] --> E["{'a': 1, 'b': 2, 'c': 3, 'd': 4}"]
+>     style A fill:#c8e6c9
+>     style B fill:#a5d6a7
+>     style D fill:#81c784
+>     style E fill:#66bb6a
+> ```
 
-### 12. **Sorting by Data Type**
-- **Key Concepts**:
-  - Sort a list by data type (int, float, string, etc.).
-  
-- **Code Example**:
-  ```python
-  def sort_by_datatype(lst):
-      dt = {}
-      for item in lst:
-          t = type(item)
-          if t not in dt:
-              dt[t] = []
-          dt[t].append(item)
-      return [item for lst in dt.values() for item in lst]
-  ```
+> [!tip]+ Nested Dictionaries
+> 
+> ```python
+> user_profile = {
+>     'personal': {'name': 'Alice', 'age': 30},
+>     'professional': {'title': 'Developer', 'skills': ['Python', 'SQL']}
+> }
+> 
+> # Accessing nested values
+> user_profile['personal']['name']  # 'Alice'
+> ```
+> 
+> ```mermaid
+> graph TD
+>     A["user_profile"] --> B["'personal'"]
+>     A --> C["'professional'"]
+>     B --> D["'name': 'Alice'"]
+>     B --> E["'age': 30"]
+>     C --> F["'title': 'Developer'"]
+>     C --> G["'skills': ['Python', 'SQL']"]
+>     style A fill:#bbdefb
+>     style B fill:#90caf9
+>     style C fill:#90caf9
+>     style D fill:#64b5f6
+>     style E fill:#64b5f6
+>     style F fill:#64b5f6
+>     style G fill:#64b5f6
+> ```
 
----
+##  Dictionary Method Flow Chart
 
-### 13. **String Mapping**
-- **Key Concepts**:
-  - Map characters from one string to another.
-  
-- **Code Example**:
-  ```python
-  from_str = "abc"
-  to_str = "123"
-  mapping = {from_str[i]: to_str[i] for i in range(len(from_str))}
-  string = input("Enter String")
-  res = ""
-  for char in string:
-      res += mapping.get(char, char)
-  print(res)
-  ```
+```mermaid
+flowchart TD
+    A[Dictionary] --> B{Operation Type}
+    
+    B -->|Access| C{Access Type}
+    C -->|Single Key| C1{Key Exists?}
+    C1 -->|Yes| C1A[Direct: dict[key]]
+    C1 -->|Maybe Not| C1B[Safe: dict.get(key)]
+    
+    C -->|Multiple Keys| C2{What to Access?}
+    C2 -->|All Keys| C2A[dict.keys()]
+    C2 -->|All Values| C2B[dict.values()]
+    C2 -->|Key-Value Pairs| C2C[dict.items()]
+    
+    B -->|Modify| D{Modification Type}
+    D -->|Add/Update| D1{Single Entry?}
+    D1 -->|Yes| D1A[dict[key] = value]
+    D1 -->|Multiple| D1B[dict.update(other_dict)]
+    
+    D -->|Remove| D2{Remove Type}
+    D2 -->|Known Key| D2A[dict.pop(key)]
+    D2 -->|All Entries| D2B[dict.clear()]
+    
+    D -->|Special| D3{Special Operation}
+    D3 -->|Default If Missing| D3A[dict.setdefault(key, default)]
+    D3 -->|Create Copy| D3B[dict.copy()]
+    
+    style A fill:#f9d5e5,stroke:#333,stroke-width:2px
+    style B fill:#eeac99,stroke:#333,stroke-width:2px
+    style C fill:#e06377,stroke:#333,stroke-width:2px
+    style D fill:#c83349,stroke:#333,stroke-width:2px
+    style C1 fill:#5b9aa0,stroke:#333,stroke-width:2px
+    style C2 fill:#5b9aa0,stroke:#333,stroke-width:2px
+    style D1 fill:#622569,stroke:#333,stroke-width:2px
+    style D2 fill:#622569,stroke:#333,stroke-width:2px
+    style D3 fill:#622569,stroke:#333,stroke-width:2px
+```
 
----
+##  Dictionary Use Cases
 
-### 14. **Set Methods**
-- **Key Concepts**:
-  - `add()`: Adds an element.
-  - `remove()`: Removes an element (raises error if not found).
-  - `discard()`: Removes an element (no error if not found).
-  - `pop()`: Removes a random element.
-  
-- **Code Example**:
-  ```python
-  s = {1, 2, 3}
-  s.add(4)
-  s.discard(2)
-  print(s)  # {1, 3, 4}
-  ```
+> [!example]+ Frequency Counter
+> 
+> ```python
+> # Count character frequency in a string
+> text = "hello world"
+> char_count = {}
+> 
+> for char in text:
+>     char_count[char] = char_count.get(char, 0) + 1
+> 
+> print(char_count)  # {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}
+> ```
 
----
+> [!example]+ Group By
+> 
+> ```python
+> # Group students by grade
+> students = [
+>     {'name': 'Alice', 'grade': 'A'},
+>     {'name': 'Bob', 'grade': 'B'},
+>     {'name': 'Charlie', 'grade': 'A'}
+> ]
+> 
+> by_grade = {}
+> for student in students:
+>     grade = student['grade']
+>     if grade not in by_grade:
+>         by_grade[grade] = []
+>     by_grade[grade].append(student['name'])
+> 
+> print(by_grade)  # {'A': ['Alice', 'Charlie'], 'B': ['Bob']}
+> ```
 
-### 15. **Subset and Superset**
-- **Key Concepts**:
-  - `<=`: Checks if one set is a subset of another.
-  - `>=`: Checks if one set is a superset of another.
-  
-- **Code Example**:
-  ```python
-  str1 = {1, 5}
-  str2 = {1, 5, 7, 8}
-  print(str1 <= str2)  # True
-  print(str2 >= str1)  # True
-  ```
+##  Performance Considerations
 
----
+> [!warning]+ Time Complexity
+> 
+> |Operation|Average Case|Worst Case|
+> |---|---|---|
+> |Access|O(1)|O(n)|
+> |Insert|O(1)|O(n)|
+> |Delete|O(1)|O(n)|
+> |Search|O(1)|O(n)|
 
-### 16. **Set Updates**
-- **Key Concepts**:
-  - `|=`: Updates a set with the union of another set.
-  - `&=`: Updates a set with the intersection of another set.
-  
-- **Code Example**:
-  ```python
-  str1 = {1, 5}
-  str2 = {5, 7, 8}
-  str1 |= str2  # str1 is now {1, 5, 7, 8}
-  ```
-
----
-
-### 17. **FrozenSet as Dictionary Key**
-- **Key Concepts**:
-  - Frozen sets can be used as dictionary keys because they are immutable.
-  
-- **Code Example**:
-  ```python
-  frozen = frozenset([1, 2, 3])
-  d = {frozen: 'value'}
-  print(d[frozen])  # 'value'
-  ```
-
----
-
-### 18. **Set Iteration**
-- **Key Concepts**:
-  - Iterate over a set using a loop.
-  
-- **Code Example**:
-  ```python
-  s = {1, 2, 3, 4, 5}
-  for item in sorted(s):
-      print(item, end=" ")  # 1 2 3 4 5
-  ```
-
----
-
-### 19. **Set Comprehension with Conditions**
-- **Key Concepts**:
-  - Use conditions to filter elements in set comprehension.
-  
-- **Code Example**:
-  ```python
-  line = "Ahmed Dina Eldeen Kamel"
-  unique_vowels = {i for i in line if i in 'AEIOUaeiou'}
-  print(unique_vowels)  # {'a', 'e', 'i'}
-  ```
-
----
-
-### 20. **Set Union with Multiple Sets**
-- **Key Concepts**:
-  - Union of multiple sets can be done using the `|` operator.
-  
-- **Code Example**:
-  ```python
-  str1 = {1, 5, 7, 8}
-  str2 = {1, 5, 3, 10}
-  str3 = {5, 6, 13}
-  union_set = str1 | str2 | str3
-  print(union_set)  # {1, 3, 5, 6, 7, 8, 10, 13}
-  ```
-
-________________________________________________________________
+> [!quote]+ Zen of Dictionaries "Dictionary-based solutions are often more elegant and efficient than their list-based counterparts when working with mapped data."
