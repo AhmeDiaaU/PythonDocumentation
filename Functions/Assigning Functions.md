@@ -1,4 +1,3 @@
-I'll customize these notes with Obsidian styling and colors:
 
 # Python Functions as First-Class Objects
 
