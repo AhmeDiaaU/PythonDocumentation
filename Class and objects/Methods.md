@@ -108,8 +108,4 @@ flowchart LR
     B[Methods] --> C
     A --> D[name<br>salary<br>address]
     B --> E[print<br>read]
-    
-    style C fill:#f96,stroke:#333,stroke-width:2px
-    style A fill:#bbf,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
 ```
