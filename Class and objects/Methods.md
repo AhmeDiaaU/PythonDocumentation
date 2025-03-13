@@ -33,10 +33,10 @@ print_empl(ahmed)  # print the employee details using the object ahmed
 
 ```mermaid
 flowchart TD
-    A[read_empl()] --> B[Create Employee Object]
+    A[read_empl] --> B[Create Employee Object]
     B --> C[Input Employee Details]
     C --> D[Return Employee Object]
-    D --> E[print_empl(ahmed)]
+    D --> E[print_empl ahmed]
     E --> F[Print Employee Details]
 ```
 
@@ -69,9 +69,9 @@ ahmed.print()  # print the employee details using the object ahmed
 
 ```mermaid
 flowchart TD
-    A[Create Employee Object] --> B[Call read() Method]
+    A[Create Employee Object] --> B[Call read Method]
     B --> C[Input Employee Details]
-    C --> D[Call print() Method]
+    C --> D[Call print Method]
     D --> E[Print Employee Details]
 ```
 
@@ -92,24 +92,24 @@ flowchart TD
 ```mermaid
 classDiagram
     class Employee {
-        +name: None
-        +salary: None
-        +address: None
+        +name
+        +salary
+        +address
         +print()
         +read()
     }
 ```
 
-### Mindmap
+### Concept Visualization
 
 ```mermaid
-mindmap
-  root((Encapsulation))
-    Attributes
-      name
-      salary
-      address
-    Methods
-      print()
-      read()
+flowchart LR
+    A[Attributes] --> C[Employee Class]
+    B[Methods] --> C
+    A --> D[name<br>salary<br>address]
+    B --> E[print<br>read]
+    
+    style C fill:#f96,stroke:#333,stroke-width:2px
+    style A fill:#bbf,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
 ```
