@@ -1,15 +1,13 @@
-
-```python
 # 🎯 Python Variable Binding & Scope Errors
 
-##  Variable Binding Explained
-```mermaid
-flowchart TD
-    A[Variable Name] --> B{{Binding Process}} --> C[Memory Address]
-    C --> D["Value (e.g., 'Ahmed')"]
-    style B fill:#e6f3ff,stroke:#333
-```
+## Variable Binding Explained
+In Python, variable binding involves associating a variable name with a memory address where the value is stored. For example:
 
+- Variable Name: `name`
+- Memory Address: `0x7ffeefbff6c8`
+- Value: `'Ahmed'`
+
+When you assign a value to a variable, Python handles the binding process by linking the variable name to the memory address where the value is stored. This allows you to use the variable name to reference the value in your code.
 ### 🔵 **Binding Fundamentals**
 ```python
 # Initial binding
