@@ -1,24 +1,4 @@
-"""Modeling real Systems :
-related information : 
-each employee has information : name , age , address , salary ,etc
-each student has name, email , gpa , courses
-to solve this complex we make a class that has so many objects 
-
-"""
-#define a class 
-class Employee :
-    name = None
-    salary = None
-    address = None
-
-ahmed = Employee() # we create instance which has multiple objects inside it 
-ahmed.name = "Ahmed Diaa"
- # we define every object 
-ahmed.salary  = 20000
-ahmed.address = "assuit"
-#_________________________________________
-#we can create multiple objects for every class
-mohamed = Employee()# Modeling Real Systems
+# Modeling Real Systems
 
 ## Overview
 To solve complex systems, we use classes that encapsulate related information into objects.
@@ -69,9 +49,3 @@ graph TD;
 
 ### Additional Notes
 - Everything in Python is an object.
-mohamed.name =""
-mohamed.salary = 23123
-mohamed.address = ""
-#every object has its data 
-#every thing in python is object
- 
