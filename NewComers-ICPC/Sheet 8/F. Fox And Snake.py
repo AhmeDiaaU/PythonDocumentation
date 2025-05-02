@@ -19,7 +19,6 @@ for i in range(len(table)):
         else :
             table[i][0] ='#'
         case = (case+1)%2
-    print(case)
 for row in table :
     for pos in row :
         print(pos , end="")
